@@ -70,3 +70,6 @@ jobs:
               with:
                 bucketName: ng-learn-deployment
                 distFiles: ./dist
+
+            - name: Get website URL
+              run: echo "${{steps.deploy.outputs.URL}}"
