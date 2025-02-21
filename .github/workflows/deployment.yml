@@ -4,47 +4,51 @@ on:
     branches:
       - master
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Get code
-        uses: actions/checkout@v4
+    test:
 
-      - name: Load and cache dependencies
-        uses: ./.github/actions/cache_deps
+        runs-on: ubuntu-latest
+        steps:
 
-      - name: Test code
-        id: tests
-        run: npm run test
+            - name: Get code
+              uses: actions/checkout@v4
 
-      - name: Upload test report
-        if: failure() && steps.tests.outcome == 'failure'
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-report
-          path: test.json
+            - name: Load and cache dependencies
+              uses: ./.github/actions/cache_deps
 
-  build:
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-        - name: Get code
-          uses: actions/checkout@v4
+            - name: Test code
+              id: tests
+              run: npm run test
 
-        - name: Installs dependencies
-          uses: ./.github/actions/cache_deps
+            - name: Upload test report
+              if: failure() && steps.tests.outcome == 'failure'
+              uses: actions/upload-artifact@v4
+              with:
+                name: test-report
+                path: test.json
 
-        - name: Build the application
-          run: npm run build
+    build:
+        needs: test
+        runs-on: ubuntu-latest
+        steps:
+            - name: Get code
+              uses: actions/checkout@v4
 
-        - name: list contents of dist
-          run: ls
+            - name: Installs dependencies
+              uses: ./.github/actions/cache_deps
 
-        - name: Upload build artifacts
-          uses: actions/upload-artifact@v4
-          with:
-            name: dist-files
-            path: dist
+            - name: Build the application
+              run: npm run build
+
+            - name: list contents of dist
+              run: ls
+
+            - name: Upload build artifacts
+              uses: actions/upload-artifact@v4
+              with:
+                name: dist-files
+                path: ./dist
+
+    
 
 
           
