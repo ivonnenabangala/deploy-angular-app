@@ -16,6 +16,6 @@ jobs:
             #   uses: 
 
             - name: Install dependencies
-              uses: npm ci
+              run: npm ci
 
             
