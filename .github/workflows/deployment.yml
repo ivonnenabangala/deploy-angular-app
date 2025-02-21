@@ -23,3 +23,16 @@ jobs:
         with:
           name: test-report
           path: test.json
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+        - name: Get code
+          uses: actions/checkout@v4
+
+        - name: Installs dependencies
+          uses: ./.github/actions/cache_deps
+
+        - name: Build the application
+          run: npm run build
