@@ -14,7 +14,4 @@ runs:
       if: steps.cache.outputs.cache-hit != 'true'
       run: npm ci
       shell: bash
-
-
-# for steps that uses run you must specify the shell to be used
        
