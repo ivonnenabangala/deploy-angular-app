@@ -37,5 +37,5 @@ jobs:
         - name: Build the application
           run: npm run build
 
-        - name: list contents
-          run: ls
+        - name: list contents of dist
+          run: cd dist && ls
