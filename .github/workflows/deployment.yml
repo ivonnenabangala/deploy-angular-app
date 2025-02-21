@@ -38,4 +38,13 @@ jobs:
           run: npm run build
 
         - name: list contents of dist
-          run: cd dist && ls
+          run: ls
+
+        - name: Upload build artifacts
+          uses: actions/upload-artifact@v4
+          with:
+            name: dist-files
+            path: dist
+
+
+          
