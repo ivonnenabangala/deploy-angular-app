@@ -69,7 +69,7 @@ jobs:
                 AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
               with:
                 bucketName: ng-learn-deployment
-                distFiles: ./dist
+                distFiles: ./dist/deploy-app/browser
 
             - name: Get website URL
               run: echo "${{steps.deploy.outputs.URL}}"
